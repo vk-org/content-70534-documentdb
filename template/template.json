@@ -1,0 +1,153 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "documentdbName": {
+            "type": "String"
+        },
+        "documentdbLocation": {
+            "type": "String"
+        },
+        "docuementdbLocationName": {
+            "type": "String"
+        },
+        "website1Name": {
+            "type": "String"
+        },
+        "website1HostingPlanName": {
+            "type": "String"
+        },
+        "website1HostingEnvironment": {
+            "type": "String"
+        },
+        "website1Location": {
+            "type": "String"
+        },
+        "website1sku": {
+            "type": "String"
+        },
+        "website1skuCode": {
+            "type": "String"
+        },
+        "website1workerSize": {
+            "type": "String"
+        },
+        "website1serverFarmResourceGroup": {
+            "type": "String"
+        },
+        "website2Name": {
+            "type": "String"
+        },
+        "website2HostingPlanName": {
+            "type": "String"
+        },
+        "website2HostingEnvironment": {
+            "type": "String"
+        },
+        "website2Location": {
+            "type": "String"
+        },
+        "website2sku": {
+            "type": "String"
+        },
+        "website2skuCode": {
+            "type": "String"
+        },
+        "website2workerSize": {
+            "type": "String"
+        },
+        "website2serverFarmResourceGroup": {
+            "type": "String"
+        },
+        "subscriptionId": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.DocumentDb/databaseAccounts",
+            "kind": "GlobalDocumentDB",
+            "name": "[parameters('documentdbName')]",
+            "apiVersion": "2015-04-08",
+            "location": "[parameters('documentdbLocation')]",
+            "properties": {
+                "databaseAccountOfferType": "Standard",
+                "locations": [
+                    {
+                        "id": "[concat(parameters('documentdbName'), '-', parameters('documentdbLocation'))]",
+                        "failoverPriority": 0,
+                        "locationName": "[parameters('docuementdbLocationName')]"
+                    }
+                ]
+            }
+        }, 
+        {
+            "type": "Microsoft.Web/sites",
+            "name": "[parameters('website1Name')]",
+            "apiVersion": "2016-03-01",
+            "location": "[parameters('website1Location')]",
+            "tags": {
+                "[concat('hidden-related:', '/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('website1serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('website1HostingPlanName'))]": "empty"
+            },
+            "properties": {
+                "name": "[parameters('website1Name')]",
+                "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('website1serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('website1HostingPlanName'))]",
+                "hostingEnvironment": "[parameters('website1HostingEnvironment')]"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Web/serverfarms/', parameters('website1HostingPlanName'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "Tier": "[parameters('website1sku')]",
+                "Name": "[parameters('website1skuCode')]"
+            },
+            "name": "[parameters('website1HostingPlanName')]",
+            "apiVersion": "2016-09-01",
+            "location": "[parameters('website1Location')]",
+            "properties": {
+                "name": "[parameters('website1HostingPlanName')]",
+                "workerSizeId": "[parameters('website1workerSize')]",
+                "reserved": false,
+                "numberOfWorkers": "1",
+                "hostingEnvironment": "[parameters('website1HostingEnvironment')]"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "name": "[parameters('website2Name')]",
+            "apiVersion": "2016-03-01",
+            "location": "[parameters('website2Location')]",
+            "tags": {
+                "[concat('hidden-related:', '/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('website2serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('website2HostingPlanName'))]": "empty"
+            },
+            "properties": {
+                "name": "[parameters('website2Name')]",
+                "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('website2serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('website2HostingPlanName'))]",
+                "hostingEnvironment": "[parameters('website2HostingEnvironment')]"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Web/serverfarms/', parameters('website2HostingPlanName'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "Tier": "[parameters('website2sku')]",
+                "Name": "[parameters('website2skuCode')]"
+            },
+            "name": "[parameters('website2HostingPlanName')]",
+            "apiVersion": "2016-09-01",
+            "location": "[parameters('website2Location')]",
+            "properties": {
+                "name": "[parameters('website2HostingPlanName')]",
+                "workerSizeId": "[parameters('website2workerSize')]",
+                "reserved": false,
+                "numberOfWorkers": "1",
+                "hostingEnvironment": "[parameters('website2HostingEnvironment')]"
+            }
+        }
+    ]
+}

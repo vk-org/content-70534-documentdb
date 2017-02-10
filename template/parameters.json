@@ -1,0 +1,66 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "documentdbName": {
+            "value": ""
+        },
+        "documentdbLocation": {
+            "value": ""
+        },
+        "docuementdbLocationName": {
+            "value": ""
+        },
+        "website1Name": {
+            "value": ""
+        },
+        "website1HostingPlanName": {
+            "value": ""
+        },
+        "website1HostingEnvironment": {
+            "value": ""
+        },
+        "website1Location": {
+            "value": ""
+        },
+        "website1sku": {
+            "value": "Free"
+        },
+        "website1skuCode": {
+            "value": "F1"
+        },
+        "website1workerSize": {
+            "value": "0"
+        },
+        "website1serverFarmResourceGroup": {
+            "value": ""
+        },
+        "website2Name": {
+            "value": ""
+        },
+        "website2HostingPlanName": {
+            "value": ""
+        },
+        "website2HostingEnvironment": {
+            "value": ""
+        },
+        "website2Location": {
+            "value": ""
+        },
+        "website2sku": {
+            "value": "Free"
+        },
+        "website2skuCode": {
+            "value": "F1"
+        },
+        "website2workerSize": {
+            "value": "0"
+        },
+        "website2serverFarmResourceGroup": {
+            "value": ""
+        },
+        "subscriptionId": {
+            "value": ""
+        }
+    }
+}

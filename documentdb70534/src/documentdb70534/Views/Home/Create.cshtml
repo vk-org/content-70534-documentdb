@@ -1,0 +1,58 @@
+﻿@model documentdb70534.Models.StoreProduct
+
+@{
+    ViewData["Title"] = "Create StoreProduct";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Create StoreProduct</h2>
+        <div asp-validation-summary="All"></div>
+        <form asp-controller="Home" asp-action="Create" method="post">
+            <div class="form-group row">
+                <label for="Name" class="col-md-4 col-form-label">Name</label>
+                <div class="col-md-8">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Description" class="col-md-4 col-form-label">Description</label>
+                <div class="col-md-8">
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Color" class="col-md-4 col-form-label">Color</label>
+                <div class="col-md-8">
+                    <input asp-for="Color" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Size" class="col-md-4 col-form-label">Size</label>
+                <div class="col-md-8">
+                    <input asp-for="Size" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="AgeRestricted" class="col-md-4 col-form-label">Product is age-restructed</label>
+                <div class="col-md-8">
+                    <input asp-for="AgeRestricted" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="DateFirstOffered" class="col-md-4 col-form-label">Date product first offered</label>
+                <div class="col-md-8">
+                    <input asp-for="DateFirstOffered" class="form-control" />
+                    <span asp-validation-for="DateFirstOffered"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-success">Create StoreProduct</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model List<documentdb70534.Models.StoreProduct>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h2>Products</h2>
+        <p>All StoreProducts in the database are listed below.</p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Color(s)</th>
+                <th>Size(s)</th>
+                <th>Age Restricted?</th>
+                <th>First Offered</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><a asp-area="" asp-action="Edit" asp-route-id="@item.Id" asp class="btn btn-primary">Edit</a></td>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Color</td>
+                    <td>@item.Size</td>
+                    <td>@item.AgeRestricted</td>
+                    <td>@item.DateFirstOffered</td>
+                    <td><a asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <a asp-area="" asp-action="Create" class="btn btn-success">Create New StoreProduct</a>
+    </div>
+</div>
+
+<div class="jumbotron">
+    <h1>About this application</h1>
+    <p>This ASP.NET MVC website, built in .NET Core 1.0.0., is designed to help you understand DocumentDB, and specifically its consistency levels.</p>
+    <p>If you create two instances of this application and run them in different environments, you can adjust the consistency level of your underlying DocumentDB account; each site should show different values for documents in your collections as they are adjusted.</p>
+    <p>To use this tool, open the HomeController.cs file and change the values for EndpointUri and PrimaryKey to match your DocumentDB account. Once you change those values, this application should take care of the rest.</p>
+</div>
