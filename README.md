@@ -20,7 +20,7 @@ Alternatively, you can install this web application on any server that supports 
 
 _Prior to buidling, deploying and using this application, you must change the EndpointURI and PrimaryKey values in HomeController.cs_ to be the correct values for your DocumentDB account. If you do not change these values the web application will not work. 
 
-```
+```csharp
     public class HomeController : Controller
     {
         /* Change these values to match your DocumentDB ednpoint URI and primary access key. */
